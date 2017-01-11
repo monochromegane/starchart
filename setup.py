@@ -7,7 +7,7 @@ setup(
     name='starchart',
     author='monochromegane',
     packages=find_packages(),
-    install_requires=['google-cloud-storage'],
+    install_requires=['google-cloud-storage', 'google-api-python-client'],
     entry_points={
         'console_scripts': 'starchart=starchart.main:main'
     }
