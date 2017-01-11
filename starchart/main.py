@@ -22,6 +22,8 @@ def main():
     expose_parser.set_defaults(func=exposer.expose)
 
     apply_parser = subparsers.add_parser('apply', help='Apply model')
+    apply_parser.add_argument('--project-id',     help="Project ID.")
+    apply_parser.add_argument('--package-path',   help="Train program package path.")
     apply_parser.set_defaults(func=applyer.apply)
 
     args = parser.parse_args()

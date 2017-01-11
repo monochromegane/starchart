@@ -25,3 +25,11 @@ def create(context, version):
         return (response, None)
     except errors.HttpError as err:
         return (None, err)
+
+def set_default(name):
+    try:
+        response = api.ml().models().versions().setDefault(name=name, body={}).execute()
+        return (response, None)
+    except errors.HttpError as err:
+        return (None, err)
+
