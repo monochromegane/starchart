@@ -2,15 +2,27 @@
 # -*- coding: utf-8 -*-
 
 import os
-from starchart.ml import models
+from starchart.ml import models, jobs, versions, files
 
 def expose(args):
     context = Context(args)
 
     # create model
+    is_default = False
     model, _ = models.get(context)
     if not model:
         models.create(context)
+        is_default = True
+
+    # create versions
+    jobs_, _ = jobs.list(context)
+    for job in jobs_:
+        timestamp = job['jobId'].split('_')[-1]
+        version, _ = versions.get(context, timestamp)
+        if not version:
+            created, _ = versions.create(context, timestamp)
+            files.dump(context, created['metadata']['version'], job, is_default)
+            is_default = False
 
 class Context:
     def __init__(self, args):
