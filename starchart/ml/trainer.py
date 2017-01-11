@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import tempfile
 import sys
+from starchart.ml import uploads
 from datetime import datetime
 from contextlib import contextmanager
 
@@ -23,6 +24,9 @@ def train(args):
         dest_dir = os.path.join(temp_dir, 'dest')
         shutil.copytree(context.setup_dir, dest_dir)
         package_paths = _run_setup(dest_dir, context.package_name)
+
+        # upload train program packages to cloud storage.
+        uploaded_paths = uploads.upload_files(package_paths, context.bucket_name, context.train_dir)
 
 class Context(object):
     def __init__(self, args):
