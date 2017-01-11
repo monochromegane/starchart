@@ -13,7 +13,7 @@ def apply(args):
         for name in [version['version']['name'] for version in content['versions'] if version['version']['isDefault']]:
             versions.set_default(name)
 
-class Context:
+class Context(object):
     def __init__(self, args):
         self.args = args
 

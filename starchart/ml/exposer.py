@@ -24,7 +24,7 @@ def expose(args):
             files.dump(context, created['metadata']['version'], job, is_default)
             is_default = False
 
-class Context:
+class Context(object):
     def __init__(self, args):
         self.args = args
         self.bucket_name = '{}-ml'.format(args.project_id)
