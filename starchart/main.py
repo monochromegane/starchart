@@ -17,6 +17,8 @@ def main():
     train_parser.set_defaults(func=trainer.train)
 
     expose_parser = subparsers.add_parser('expose', help='Expose model')
+    expose_parser.add_argument('--project-id',      help="Project ID.")
+    expose_parser.add_argument('--package-path',    help="Train program package path.")
     expose_parser.set_defaults(func=exposer.expose)
 
     apply_parser = subparsers.add_parser('apply', help='Apply model')
