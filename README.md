@@ -57,6 +57,11 @@ $ starchart train \
   --                           \
   --your_train_param=FOO
 
+# State
+$ starchart state \
+  --project-id=YOUR_PROJECT_ID \
+  --package-path=PACKAGE_PATH
+
 # Expose
 $ starchart expose \
   --project-id=YOUR_PROJECT_ID \
@@ -116,7 +121,6 @@ You can choose default version in this file (`isDefault`).
 
 ## TODO
 
-- Add state option.
 - Add test option which test API input and output.
 
 ## Installation
