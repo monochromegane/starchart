@@ -18,7 +18,7 @@ def submit(packages, context):
     }
     try:
         response = api.ml().jobs().create(
-            parent='projects/{}'.format(args.project_id),
+            parent='projects/{}'.format(context.project_id),
             body=body
         ).execute()
         return (response, None)
@@ -28,7 +28,7 @@ def submit(packages, context):
 def list(context, **kwargs):
     try:
         response = api.ml().jobs().list(
-            parent='projects/{}'.format(context.args.project_id),
+            parent='projects/{}'.format(context.project_id),
             **kwargs
         ).execute()
         pattern = re.compile(r'%s_\d{14}' % context.model_name)

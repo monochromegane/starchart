@@ -50,27 +50,27 @@ StarChart is a tool to manage [Google Cloud Machine Learning](https://cloud.goog
 ```sh
 # Train
 $ starchart train \
-  --project-id=YOUR_PROJECT_ID \
-  --package-path=PACKAGE_PATH  \
-  --module-name=MODULE_NAME    \
-  --region=REGION              \
-  --                           \
+  -p=YOUR_PROJECT_ID \
+  -m=MODEL_NAME      \
+  -M=MODULE_NAME     \
+  -r=REGION          \
+  --                 \
   --your_train_param=FOO
 
 # State
 $ starchart state \
-  --project-id=YOUR_PROJECT_ID \
-  --package-path=PACKAGE_PATH
+  -p=YOUR_PROJECT_ID \
+  -m=MODEL_NAME
 
 # Expose
 $ starchart expose \
-  --project-id=YOUR_PROJECT_ID \
-  --package-path=PACKAGE_PATH
+  -p=YOUR_PROJECT_ID \
+  -m=MODEL_NAME
 
 # Apply
 $ starchart apply \
-  --project-id=YOUR_PROJECT_ID \
-  --package-path=PACKAGE_PATH
+  -p=YOUR_PROJECT_ID \
+  -m=MODEL_NAME
 ```
 
 ### model file

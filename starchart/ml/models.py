@@ -7,7 +7,7 @@ from googleapiclient import errors
 def get(context):
     try:
         response = api.ml().models().get(
-                name='projects/{}/models/{}'.format(context.args.project_id, context.model_name)
+                name='projects/{}/models/{}'.format(context.project_id, context.model_name)
         ).execute()
         return (response, None)
     except errors.HttpError as err:
@@ -16,7 +16,7 @@ def get(context):
 def create(context):
     try:
         response = api.ml().models().create(
-                parent='projects/{}'.format(context.args.project_id),
+                parent='projects/{}'.format(context.project_id),
                 body={'name': context.model_name}
         ).execute()
         return (response, None)
