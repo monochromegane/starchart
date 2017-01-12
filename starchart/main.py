@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-from starchart.ml import trainer, exposer, applyer
+from starchart.ml import trainer, stater, exposer, applyer
 
 def main():
     parser = argparse.ArgumentParser(description='StarChart')
@@ -15,6 +15,11 @@ def main():
     train_parser.add_argument('--region',         help="Region.")
     train_parser.add_argument('args', nargs='*',  help="Train program parameters.")
     train_parser.set_defaults(func=trainer.train)
+
+    state_parser = subparsers.add_parser('state',  help='State train job')
+    state_parser.add_argument('--project-id',      help="Project ID.")
+    state_parser.add_argument('--package-path',    help="Train program package path.")
+    state_parser.set_defaults(func=stater.state)
 
     expose_parser = subparsers.add_parser('expose', help='Expose model')
     expose_parser.add_argument('--project-id',      help="Project ID.")

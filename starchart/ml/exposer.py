@@ -15,7 +15,7 @@ def expose(args):
         is_default = True
 
     # create versions
-    jobs_, _ = jobs.list(context)
+    jobs_, _ = jobs.list(context, filter='state=SUCCEEDED')
     for job in jobs_:
         timestamp = job['jobId'].split('_')[-1]
         version, _ = versions.get(context, timestamp)

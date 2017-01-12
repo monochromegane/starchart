@@ -25,11 +25,11 @@ def submit(packages, context):
     except errors.HttpError as err:
         return (None, err)
 
-def list(context):
+def list(context, **kwargs):
     try:
         response = api.ml().jobs().list(
             parent='projects/{}'.format(context.args.project_id),
-            filter='state=SUCCEEDED'
+            **kwargs
         ).execute()
         pattern = re.compile(r'%s_\d{14}' % context.model_name)
         return ([job for job in response['jobs'] if re.search(pattern, job['jobId'])], None)
