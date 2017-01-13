@@ -65,6 +65,9 @@ $ starchart expose -m=MODEL_NAME
 $ starchart apply -m=MODEL_NAME
 ```
 
+You can use `TRAIN_PATH` in your train parameters string. It's replaced real training path when submitting job.
+e.g.: `starchart train ... -- --model_dir=TRAIN_PATH/model --train_dir=TRAIN_PATH/train`.
+
 ### Environment variables
 
 You can use the following environment variables.
