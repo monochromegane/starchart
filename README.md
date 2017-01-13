@@ -50,28 +50,31 @@ StarChart is a tool to manage [Google Cloud Machine Learning](https://cloud.goog
 ```sh
 # Train
 $ starchart train \
-  -p=YOUR_PROJECT_ID \
-  -m=MODEL_NAME      \
-  -M=MODULE_NAME     \
-  -r=REGION          \
-  --                 \
+  -m=MODEL_NAME   \
+  -M=MODULE_NAME  \
+  --              \
   --your_train_param=FOO
 
 # State
-$ starchart state \
-  -p=YOUR_PROJECT_ID \
-  -m=MODEL_NAME
+$ starchart state -m=MODEL_NAME
 
 # Expose
-$ starchart expose \
-  -p=YOUR_PROJECT_ID \
-  -m=MODEL_NAME
+$ starchart expose -m=MODEL_NAME
 
 # Apply
-$ starchart apply \
-  -p=YOUR_PROJECT_ID \
-  -m=MODEL_NAME
+$ starchart apply -m=MODEL_NAME
 ```
+
+### Environment variables
+
+You can use the following environment variables.
+
+- GCP\_PROJECT\_ID
+  - Project ID that is instead of --project-id option.
+- GCP\_REGION
+  - Region that is instead of --region option.
+- GOOGLE\_APPLICATION\_CREDENTIALS
+  - A file path defining the GCP credentials.
 
 ### model file
 

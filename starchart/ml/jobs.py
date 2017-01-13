@@ -12,7 +12,7 @@ def submit(packages, context):
         'trainingInput': {
             'packageUris':  packages,
             'pythonModule': args.module_name,
-            'region':       args.region,
+            'region':       context.region,
             'args':         context.train_args()
         }
     }
