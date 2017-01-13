@@ -11,7 +11,7 @@ class Context(object):
         self.model_name = args.model_name
         self.timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
 
-        self.bucket_name = '{}-ml'.format(args.project_id)
+        self.bucket_name = '{}-ml'.format(self.project_id)
         self.setup_dir = os.path.abspath(os.path.join(args.train_program_base, args.model_name))
         if 'module_name' in args:
             self.package_name = args.module_name.split('.')[0]
