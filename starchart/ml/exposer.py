@@ -20,5 +20,6 @@ def expose(args):
         version, _ = versions.get(context, timestamp)
         if not version:
             created, _ = versions.create(context, timestamp)
-            files.dump(context, created['metadata']['version'], job, is_default)
-            is_default = False
+            if created is not None:
+                files.dump(context, created['metadata']['version'], job, is_default)
+                is_default = False
