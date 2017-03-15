@@ -6,4 +6,4 @@ from googleapiclient import discovery
 
 def ml():
     credentials = GoogleCredentials.get_application_default()
-    return discovery.build('ml', 'v1beta1', credentials=credentials).projects()
+    return discovery.build('ml', 'v1', credentials=credentials).projects()
