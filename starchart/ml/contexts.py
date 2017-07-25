@@ -20,6 +20,10 @@ class Context(object):
         self.job_id     = '_'.join([self.model_name, self.timestamp])
         self.train_dir  = '/'.join([self.model_name, self.timestamp])
         self.train_path = '/'.join(['gs:/', self.bucket_name, self.train_dir])
+        if 'scale_tier' in args:
+            self.scale_tier = args.scale_tier
+        else:
+            self.scale_tier = 'BASIC'
 
     def train_args(self):
         return [arg.replace('TRAIN_PATH', self.train_path)for arg in self.args.args]

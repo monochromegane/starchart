@@ -13,6 +13,7 @@ def main():
     train_parser.add_argument('-p', '--project-id',  help="Project ID. Or environment value named GCP_PROJECT_ID.")
     train_parser.add_argument('-m', '--model-name',  required=True, help="Model name.")
     train_parser.add_argument('-M', '--module-name', required=True, help="Train program module name.")
+    train_parser.add_argument('-s', '--scale-tier',  help="Scale tier (default: BASIC).")
     train_parser.add_argument('-r', '--region',      help="Region. Or environment value named GCP_REGION.")
     train_parser.add_argument('args', nargs='*',     help="Train program parameters.")
     train_parser.set_defaults(func=trainer.train)
