@@ -42,7 +42,7 @@ def _run_setup(setup_dir, package_name):
             setup_file.write(setup_contents)
 
     args = [sys.executable, 'setup.py', 'sdist', '--dist-dir=dist']
-    subprocess.run(args, cwd=setup_dir, check=True, stdout=subprocess.DEVNULL)
+    subprocess.run(args, cwd=setup_dir, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     dist_dir = os.path.join(setup_dir, 'dist')
     local_paths = [os.path.join(dist_dir, rel_file)
