@@ -34,7 +34,9 @@ def main():
     apply_parser.set_defaults(func=applyer.apply)
 
     args = parser.parse_args()
-    args.func(args)
+    err = args.func(args)
+    if err is not None:
+        print(err)
 
 if __name__ == '__main__':
     main()

@@ -28,7 +28,8 @@ def train(args):
         uploaded_paths = uploads.upload_files(package_paths, context.bucket_name, context.train_dir)
 
     # submit train job.
-    jobs.submit(uploaded_paths, context)
+    _, err = jobs.submit(uploaded_paths, context)
+    return err
 
 def _run_setup(setup_dir, package_name):
     setup_path = os.path.join(setup_dir, 'setup.py')

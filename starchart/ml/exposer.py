@@ -10,16 +10,24 @@ def expose(args):
     is_default = False
     model, _ = models.get(context)
     if not model:
-        models.create(context)
+        print('Creating model: {}...'.format(context.model_name))
+        _, err = models.create(context)
+        if err is not None:
+            return err
         is_default = True
 
     # create versions
-    jobs_, _ = jobs.list(context, filter='state=SUCCEEDED')
+    jobs_, err = jobs.list(context, filter='state=SUCCEEDED')
+    if err is not None:
+        return err
     for job in jobs_:
         timestamp = job['jobId'].split('_')[-1]
         version, _ = versions.get(context, timestamp)
         if not version:
-            created, _ = versions.create(context, timestamp)
-            if created is not None:
-                files.dump(context, created['metadata']['version'], job, is_default)
-                is_default = False
+            print('Creating version: projects/{}/models/{}/versions/{}...'.format(context.project_id, context.model_name, 'v' + timestamp))
+            created, err = versions.create(context, timestamp)
+            if err is not None:
+                print(err)
+                continue
+            files.dump(context, created['metadata']['version'], job, is_default)
+            is_default = False
