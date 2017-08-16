@@ -10,5 +10,6 @@ def apply(args):
     with open(file_name) as f:
         content = json.load(f)
         for name in [version['version']['name'] for version in content['versions'] if version['version']['isDefault']]:
+            print('Applying default version: {}...'.format(name))
             _, err = versions.set_default(name)
             return err

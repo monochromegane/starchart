@@ -20,14 +20,17 @@ def train(args):
 
     # setup train program.
     with _temporaryDirectory() as temp_dir:
+        print('Setup train program...')
         dest_dir = os.path.join(temp_dir, 'dest')
         shutil.copytree(context.setup_dir, dest_dir)
         package_paths = _run_setup(dest_dir, context.package_name)
 
         # upload train program packages to cloud storage.
+        print('Uploading train program...')
         uploaded_paths = uploads.upload_files(package_paths, context.bucket_name, context.train_dir)
 
     # submit train job.
+    print('Submitting train job: {}...'.format(context.job_id))
     _, err = jobs.submit(uploaded_paths, context)
     return err
 
@@ -39,7 +42,7 @@ def _run_setup(setup_dir, package_name):
             setup_file.write(setup_contents)
 
     args = [sys.executable, 'setup.py', 'sdist', '--dist-dir=dist']
-    subprocess.call(args, cwd=setup_dir)
+    subprocess.run(args, cwd=setup_dir, check=True, stdout=subprocess.DEVNULL)
 
     dist_dir = os.path.join(setup_dir, 'dist')
     local_paths = [os.path.join(dist_dir, rel_file)
