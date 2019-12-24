@@ -28,8 +28,8 @@ def main():
     expose_parser = subparsers.add_parser('expose',  help='Expose model')
     expose_parser.add_argument('-p', '--project-id',  help="Project ID. Or environment value named GCP_PROJECT_ID.")
     expose_parser.add_argument('-m', '--model-name',      required=True, help="Model name.")
-    expose_parser.add_argument('-R', '--runtime-version', help="Runtime version for job.")
-    expose_parser.add_argument('-P', '--python-version',  help="Python version for job.")
+    expose_parser.add_argument('-R', '--runtime-version', help="Runtime version for model version.")
+    expose_parser.add_argument('-P', '--python-version',  help="Python version for model version.")
     expose_parser.add_argument('-F', '--framework',       help="TENSORFLOW, SCIKIT_LEARN, XGBOOST")
     expose_parser.set_defaults(func=exposer.expose)
 
