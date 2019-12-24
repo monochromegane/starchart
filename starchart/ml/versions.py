@@ -15,12 +15,18 @@ def get(context, version):
 
 def create(context, version):
     try:
+        body = {
+                    'name': 'v' + version,
+                    'deploymentUri': context.deployment_uri(version),
+                    'pythonVersion': context.python_version,
+                    'runtimeVersion': context.runtime_version
+                }
+        if context.framework is not None:
+            body['framework'] = context.framework
+
         response = api.ml().models().versions().create(
                 parent='projects/{}/models/{}'.format(context.project_id, context.model_name),
-                body={
-                    'name': 'v' + version,
-                    'deploymentUri': context.deployment_uri(version)
-                    }
+                body=body
         ).execute()
         return (response, None)
     except errors.HttpError as err:

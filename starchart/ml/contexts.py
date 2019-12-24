@@ -25,6 +25,21 @@ class Context(object):
         else:
             self.scale_tier = 'BASIC'
 
+        if 'runtime_version' in args:
+            self.runtime_version = args.runtime_version
+        else:
+            self.runtime_version = '1.0'
+
+        if 'python_version' in args:
+            self.python_version = args.python_version
+        else:
+            self.python_version = '2.7'
+
+        if 'framework' in args:
+            self.framework = args.framework
+        else:
+            self.framework = None
+
     def train_args(self):
         return [arg.replace('TRAIN_PATH', self.train_path)for arg in self.args.args]
 

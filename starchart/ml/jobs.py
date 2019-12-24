@@ -10,11 +10,13 @@ def submit(packages, context):
     body = {
         'jobId': context.job_id,
         'trainingInput': {
-            'scaleTier':    context.scale_tier,
-            'packageUris':  packages,
-            'pythonModule': args.module_name,
-            'region':       context.region,
-            'args':         context.train_args()
+            'scaleTier':      context.scale_tier,
+            'packageUris':    packages,
+            'pythonModule':   args.module_name,
+            'region':         context.region,
+            'runtimeVersion': context.runtime_version,
+            'pythonVersion':  context.python_version,
+            'args':           context.train_args()
         }
     }
     try:
